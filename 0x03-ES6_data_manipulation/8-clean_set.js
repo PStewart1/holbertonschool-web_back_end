@@ -1,11 +1,11 @@
 export default function cleanSet(set, startString) {
-  if (startString === '') {
+  if (typeof startString !== 'string' || startString === '') {
     return '';
   }
   let newString = '';
   let i = 0;
   set.forEach((element) => {
-    if (element.startsWith(startString)) {
+    if (element && element.startsWith(startString)) {
       if (i > 0) {
         newString += '-';
       }
