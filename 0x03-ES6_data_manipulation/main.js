@@ -1,6 +1,4 @@
-import cleanSet from "./8-clean_set.js";
+import groceriesList from "./9-groceries_list.js";
 
-console.log(cleanSet(new Set(['bonjovi', 'bonaparte', 'bonappetit', 'banana']), 'bon'));
-console.log(cleanSet(new Set(['bonjovi', 'bonaparte', 'bonappetit', 'banana']), ));
-console.log(cleanSet(new Set(['id-test', 'id-chicken', 'id-user', , 'id-id-']), 'id-'));
+console.log(groceriesList());
 
