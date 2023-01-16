@@ -3,7 +3,7 @@ interface Student {
   lastName: string;
   age: number;
   location: string;
-};
+}
 
 const student1: Student = {
   firstName: 'Peter',
@@ -19,6 +19,6 @@ const student2: Student = {
   location: 'Midtown High',
 };
 
-const studentsList = [student1, student2];
+const studentsList: Array<Student> = [student1, student2];
 
 console.table(studentsList, ['firstName', 'location']);
