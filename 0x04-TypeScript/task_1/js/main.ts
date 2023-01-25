@@ -11,7 +11,7 @@ interface Directors extends Teacher {
     numberOfReports: number;
 }
 
-function printTeacher(firstName: string, lastName: string) {
+function printTeacher(firstName: string, lastName: string): string {
     return `${firstName[0]}. ${lastName}`
 };
 
@@ -36,10 +36,10 @@ class StudentClass implements studentInterface{
     }
 
     workOnHomework(): string {
-        return 'Currently working'
+        return 'Currently working';
     }
 
     displayName(): string {
-        return this.firstName
+        return this.firstName;
     }
 };

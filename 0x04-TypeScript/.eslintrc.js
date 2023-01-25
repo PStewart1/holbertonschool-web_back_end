@@ -1,13 +1,15 @@
-
-module.exports =  {
-  parser:  '@typescript-eslint/parser',
-  extends:  [
-    'plugin:@typescript-eslint/recommended',  // Uses the recommended rules from @typescript-eslint/eslint-plugin
-  ],
-  parserOptions:  {
-    ecmaVersion:  2018,
-    sourceType:  'module',
-  },
-  rules:  {
-  },
-};
+module.exports = {
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": "standard-with-typescript",
+    "overrides": [
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "rules": {
+    }
+}
