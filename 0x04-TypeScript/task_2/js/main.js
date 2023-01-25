@@ -34,3 +34,16 @@ function createEmployee(salary) {
         return new Director;
     }
 }
+function isDirector(employee) {
+    return employee instanceof Director;
+}
+function executeWork(employee) {
+    if (isDirector(employee)) {
+        var dir = new Director();
+        return dir.workDirectorTasks();
+    }
+    else {
+        var teach = new Teacher();
+        return teach.workTeacherTasks();
+    }
+}
