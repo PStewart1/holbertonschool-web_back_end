@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-""" Connect to secure database """
+"""
+Regex-ing
+Log formatter
+Create logger
+Connect to secure database
+Read and filter data
+"""
 from typing import List
 import re
 import logging
@@ -10,8 +16,7 @@ PII_FIELDS = ('name', 'email', 'phone', 'ssn', 'password')
 
 
 class RedactingFormatter(logging.Formatter):
-    """ Redacting Formatter class
-        """
+    """ Redacting Formatter class """
 
     REDACTION = "***"
     FORMAT = "[HOLBERTON] %(name)s %(levelname)s %(asctime)-15s: %(message)s"
