@@ -17,5 +17,5 @@ class BasicAuth(Auth):
         if authorization_header is None\
             or type(authorization_header) is not str\
                 or authorization_header.startswith('Basic ') is False:
-                return None
+            return None
         return authorization_header[6:]
