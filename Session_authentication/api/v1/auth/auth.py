@@ -36,7 +36,7 @@ class Auth():
         public method that returns None
         """
         return None
-    
+
     def session_cookie(self, request=None):
         """
         returns a cookie value from a request
