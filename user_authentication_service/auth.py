@@ -5,6 +5,7 @@ Auth module
 from bcrypt import hashpw, gensalt, checkpw
 from db import DB
 from user import User
+import uuid
 
 
 def _hash_password(password: str) -> bytes:
@@ -45,3 +46,9 @@ class Auth:
                 return False
         except Exception:
             return False
+
+    def _generate_uuid() -> str:
+        """
+        returns a string representation of a new UUID.
+        """
+        return str(uuid.uuid4())
