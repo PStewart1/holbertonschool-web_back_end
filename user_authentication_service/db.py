@@ -54,7 +54,7 @@ class DB:
             raise NoResultFound
         return row
 
-    def update_user(self, id: int, **kwargs) -> None:
+    def update_user(self, user_id: int, **kwargs) -> None:
         """
         locates the user to update, updates the user`s attributes
         as passed in the method`s arguments,
@@ -63,7 +63,7 @@ class DB:
         for key in kwargs.keys():
             if not hasattr(User, key):
                 raise ValueError
-        user = self.find_user_by(id=id)
+        user = self.find_user_by(id=user_id)
         for key, value in kwargs.items():
             setattr(user, key, value)
         self._session.commit()
