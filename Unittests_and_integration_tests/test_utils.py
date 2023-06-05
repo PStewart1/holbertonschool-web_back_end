@@ -15,12 +15,12 @@ class TestAccessNestedMap(unittest.TestCase):
 
         ('one layer down',
          {'nested_map': {"a": {"b": 2}}, 'path': ("a",)},
-         {"b": 2}),
+         {'b': 2}),
 
         ('both layers',
          {'nested_map': {"a": {"b": 2}}, 'path': ("a", "b")},
          2),
     ])
-    def test_access_nested_map(self, title, kwargs, expected,):
+    def test_access_nested_map(self, _, kwargs, expected,):
         result = a_nmap(**kwargs)
         self.assertEqual(result, expected)
