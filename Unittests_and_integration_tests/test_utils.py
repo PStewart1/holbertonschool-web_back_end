@@ -9,22 +9,19 @@ from parameterized import parameterized
 class TestAccessNestedMap(unittest.TestCase):
 
     @parameterized.expand([
-        ('unnested',
-         {"a": 1},
+        ({"a": 1},
          ("a",),
          1),
 
-        ('one layer down',
-         {"a": {"b": 2}},
+        ({"a": {"b": 2}},
          ("a",),
          {'b': 2}),
 
-        ('both layers',
-         {"a": {"b": 2}},
+        ({"a": {"b": 2}},
          ("a", "b"),
          2),
     ])
-    def test_access_nested_map(self, _, nest, path, expected,):
+    def test_access_nested_map(self, nest, path, expected,):
         """Test that the method returns what it is supposed to."""
         result = a_nmap(nest, path)
         self.assertEqual(result, expected)
