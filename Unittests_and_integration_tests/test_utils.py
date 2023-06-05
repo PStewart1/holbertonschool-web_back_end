@@ -10,17 +10,28 @@ class TestAccessNestedMap(unittest.TestCase):
 
     @parameterized.expand([
         ('unnested',
-         {'nested_map': {"a": 1}, 'path': ("a",)},
+         {"a": 1},
+         ("a",),
          1),
 
         ('one layer down',
-         {'nested_map': {"a": {"b": 2}}, 'path': ("a",)},
+         {"a": {"b": 2}},
+         ("a",),
          {'b': 2}),
 
         ('both layers',
-         {'nested_map': {"a": {"b": 2}}, 'path': ("a", "b")},
+         {"a": {"b": 2}},
+         ("a", "b"),
          2),
     ])
-    def test_access_nested_map(self, _, kwargs, expected,):
-        result = a_nmap(**kwargs)
+    def test_access_nested_map(self, _, nest, path, expected,):
+        """Test that the method returns what it is supposed to."""
+        result = a_nmap(nest, path)
         self.assertEqual(result, expected)
+
+    # def test_access_nested_map_exception(self):
+    #     """Test that a KeyError is raised for the following inputs:
+    #         - `nested_map` is not a dict
+    #         - `path` is not a sequence
+    #         - Any key in `path` is not found
+    #     """
