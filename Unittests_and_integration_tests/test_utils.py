@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Generic utilities for github org client.
 """
-import unittest
-from utils import access_nested_map as a_map
+from unittest import TestCase, mock
+from utils import access_nested_map as a_map, get_json
 from parameterized import parameterized
 
 
-class TestAccessNestedMap(unittest.TestCase):
+class TestAccessNestedMap(TestCase):
     """TestAccessNestedMap class
     """
 
@@ -40,3 +40,12 @@ class TestAccessNestedMap(unittest.TestCase):
         with self.assertRaises(KeyError) as error:
             a_map(**kwargs)
         self.assertEqual(str(expected), str(error.exception))
+
+
+class TestGetJson(TestCase):
+    """TestGetJson class"""
+
+    def test_get_json():
+        """"""
+        mock.patch
+        
