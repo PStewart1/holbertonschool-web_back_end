@@ -4,6 +4,7 @@
 from unittest import TestCase, mock
 from parameterized import parameterized, parameterized_class
 from client import GithubOrgClient
+from fixtures import TEST_PAYLOAD
 
 
 class TestGithubOrgClient(TestCase):
@@ -66,40 +67,24 @@ class TestGithubOrgClient(TestCase):
         self.assertEqual(response, expected)
 
 
-@parameterized_class(
-    ("org_payload", "repos_payload", "expected_repos", "apache2_repos"),
-    [
-        (
-            {"repos_url": "http://test.com"},
-            [{"name": "test_repo", "license": {"key": "my_license"}}],
-            ["test_repo"],
-            ["test_repo"]
-        ),
-        (
-            {"repos_url": "http://test.com"},
-            [{"name": "test_repo", "license": {"key": "other_license"}}],
-            ["test_repo"],
-            []
-        )
-    ]
-)
+@parameterized_class(['org_payload', 'repos_payload',
+                        'expected_repos', 'apache2_repos'], TEST_PAYLOAD)
 class TestIntegrationGithubOrgClient(TestCase):
     """TestIntegrationGithubOrgClient class"""
 
     @classmethod
     def setUpClass(cls):
-        """setUpClass method"""
+        """Set up class"""
         config = {'return_value.json.side_effect':
                   [
                       cls.org_payload, cls.repos_payload,
-                      cls.org_payload, cls.repos_payload
+                      cls.org_payload, cls.repos_payload,
                   ]
                   }
         cls.get_patcher = mock.patch('requests.get', **config)
-
         cls.mock_get = cls.get_patcher.start()
 
     @classmethod
     def tearDownClass(cls):
-        """tearDownClass method"""
+        """Tear down class"""
         cls.get_patcher.stop()
