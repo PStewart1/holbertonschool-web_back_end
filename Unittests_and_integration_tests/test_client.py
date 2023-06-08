@@ -52,3 +52,15 @@ class TestGithubOrgClient(TestCase):
             self.assertEqual(response, ["Google", "Twitter"])
             mock_get_json.assert_called_once()
             mock_public.assert_called_once()
+
+    @parameterized.expand([
+        ({'license': {'key': 'my_license'}}, 'my_license', True),
+        ({'license': {'key': 'other_license'}}, 'my_license', False),
+    ])
+    def test_has_license(self, test_repo, test_license, expected):
+        """Test that the result of GithubOrgClient.has_license is the
+        expected one based on the mocked payload.
+        """
+        test_class = GithubOrgClient("test")
+        response = test_class.has_license(test_repo, test_license)
+        self.assertEqual(response, expected)
