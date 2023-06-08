@@ -2,7 +2,7 @@
 """Generic utilities for github org client.
 """
 from unittest import TestCase, mock
-from parameterized import parameterized
+from parameterized import parameterized, parameterized_class
 from client import GithubOrgClient
 
 
@@ -65,18 +65,41 @@ class TestGithubOrgClient(TestCase):
         response = test_class.has_license(test_repo, test_license)
         self.assertEqual(response, expected)
 
-    @mock.patch('client.get_json')
-    def test_public_repos_with_license(self, mock_get_json):
-        """Test that the list of repos is what you expect from the chosen
-        payload.
-        """
-        test_json = [{"name": "Google", "license": {"key": "my_license"}}]
-        mock_get_json.return_value = test_json
-        with mock.patch('client.GithubOrgClient._public_repos_url',
-                        new_callable=mock.PropertyMock) as mock_public:
-            mock_public.return_value = "hello/world"
-            test_class = GithubOrgClient("test")
-            response = test_class.public_repos("my_license")
-            self.assertEqual(response, ["Google"])
-            mock_get_json.assert_called_once()
-            mock_public.assert_called_once()
+
+@parameterized_class(
+    ("org_payload", "repos_payload", "expected_repos", "apache2_repos"),
+    [
+        (
+            {"repos_url": "http://test.com"},
+            [{"name": "test_repo", "license": {"key": "my_license"}}],
+            ["test_repo"],
+            ["test_repo"]
+        ),
+        (
+            {"repos_url": "http://test.com"},
+            [{"name": "test_repo", "license": {"key": "other_license"}}],
+            ["test_repo"],
+            []
+        )
+    ]
+)
+class TestIntegrationGithubOrgClient(TestCase):
+    """TestIntegrationGithubOrgClient class"""
+
+    @classmethod
+    def setUpClass(cls):
+        """setUpClass method"""
+        config = {'return_value.json.side_effect':
+                  [
+                      cls.org_payload, cls.repos_payload,
+                      cls.org_payload, cls.repos_payload
+                  ]
+                  }
+        cls.get_patcher = mock.patch('requests.get', **config)
+
+        cls.mock_get = cls.get_patcher.start()
+
+    @classmethod
+    def tearDownClass(cls):
+        """tearDownClass method"""
+        cls.get_patcher.stop()
