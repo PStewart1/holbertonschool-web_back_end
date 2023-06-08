@@ -64,3 +64,19 @@ class TestGithubOrgClient(TestCase):
         test_class = GithubOrgClient("test")
         response = test_class.has_license(test_repo, test_license)
         self.assertEqual(response, expected)
+
+    @mock.patch('client.get_json')
+    def test_public_repos_with_license(self, mock_get_json):
+        """Test that the list of repos is what you expect from the chosen
+        payload.
+        """
+        test_json = [{"name": "Google", "license": {"key": "my_license"}}]
+        mock_get_json.return_value = test_json
+        with mock.patch('client.GithubOrgClient._public_repos_url',
+                        new_callable=mock.PropertyMock) as mock_public:
+            mock_public.return_value = "hello/world"
+            test_class = GithubOrgClient("test")
+            response = test_class.public_repos("my_license")
+            self.assertEqual(response, ["Google"])
+            mock_get_json.assert_called_once()
+            mock_public.assert_called_once()
