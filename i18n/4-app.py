@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """Force locale with URL parameter
 """
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_babel import Babel
 from os import getenv
-from requests import request
 
 app = Flask(__name__)
 babel = Babel(app)
