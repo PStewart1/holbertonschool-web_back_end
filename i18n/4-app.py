@@ -3,7 +3,6 @@
 """
 from flask import Flask, render_template, request
 from flask_babel import Babel
-from os import getenv
 
 app = Flask(__name__)
 babel = Babel(app)
@@ -24,9 +23,9 @@ app.config.from_object(Config)
 def index():
     """ GET /
     Return:
-      - 0-index.html
+      - 4-index.html
     """
-    return render_template("0-index.html")
+    return render_template("4-index.html")
 
 
 @babel.localeselector
@@ -36,10 +35,8 @@ def get_locale():
     locale = request.args.get("locale")
     if locale and locale in Config.LANGUAGES:
         return locale
-    return request.accept_languages.best_match(Config.LANGUAGES)
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 if __name__ == "__main__":
-    host = getenv("API_HOST", "0.0.0.0")
-    port = getenv("API_PORT", "5000")
-    app.run(host=host, port=port)
+    app.run()
