@@ -21,6 +21,7 @@ class TestAccessNestedMap(TestCase):
          2),
     ])
     def test_access_nested_map(self, kwargs, expected):
+        """Test that the method returns what it is supposed to."""
         result = a_map(**kwargs)
         self.assertEqual(result, expected)
 
