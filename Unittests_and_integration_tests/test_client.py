@@ -5,6 +5,7 @@ from unittest import TestCase, mock
 from parameterized import parameterized, parameterized_class
 from client import GithubOrgClient
 from fixtures import TEST_PAYLOAD
+from unittest.mock import patch
 
 
 class TestGithubOrgClient(TestCase):
@@ -38,7 +39,7 @@ class TestGithubOrgClient(TestCase):
             self.assertEqual(response, test_json.get("repos_url"))
             mock_org.assert_called_once()
 
-    @mock.patch('client.get_json')
+    @patch('client.get_json')
     def test_public_repos(self, mock_get_json):
         """Test that the list of repos is what you expect from the chosen
         payload.
@@ -68,7 +69,7 @@ class TestGithubOrgClient(TestCase):
 
 
 @parameterized_class(['org_payload', 'repos_payload',
-                        'expected_repos', 'apache2_repos'], TEST_PAYLOAD)
+                      'expected_repos', 'apache2_repos'], TEST_PAYLOAD)
 class TestIntegrationGithubOrgClient(TestCase):
     """TestIntegrationGithubOrgClient class"""
 
