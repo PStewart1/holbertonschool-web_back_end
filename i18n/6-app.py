@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Force locale with URL parameter
 """
-from flask import Flask, render_template, request, g
+from flask import Flask, render_template, request
 from flask_babel import Babel
 
 app = Flask(__name__)
@@ -57,7 +57,11 @@ def get_user():
 def before_request():
     """ Finds user and sets it as a global on flask.g.user
     """
-    g.user = get_user()
+    login_as = request.args.get("login_as")
+    user = get_user(login_as)
+    if user:
+        from flask import g
+        g.user = user
 
 
 # @babel.timezoneselector
