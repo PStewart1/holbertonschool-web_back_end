@@ -2,8 +2,7 @@
 """Parametrize templates
 """
 from flask import Flask, render_template
-from flask_babel import Babel, gettext
-# import babel
+from flask_babel import Babel
 from os import getenv
 from requests import request
 
