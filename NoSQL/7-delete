@@ -1,4 +1,2 @@
 // Delete by match 
-db.school.remove(
-  {"name": "Holberton school"}
-)
+db.school.remove({"name": "Holberton school"})
