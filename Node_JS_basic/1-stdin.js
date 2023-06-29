@@ -1,4 +1,4 @@
-// Using Process stdin 
+// Using Process stdin
 process.stdin.setEncoding('utf8');
 console.log('Welcome to Holberton School, what is your name?');
 
