@@ -1,15 +1,15 @@
 // Using Process stdin
 
 const readline = require('readline').createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-  
-  readline.question(`Welcome to Holberton School, what is your name?`, name => {
-    console.log(`Your name is: ${name}!`);
-    // readline.close();
-  });
+  input: process.stdin,
+  output: process.stdout,
+});
 
-  process.on('exit', () => {
-    console.log('This important software is now closing');
-  });
+readline.question('Welcome to Holberton School, what is your name?\n', (name) => {
+  console.log(`Your name is: ${name}`);
+  readline.close();
+});
+
+process.on('exit', () => {
+  console.log('This important software is now closing');
+});
