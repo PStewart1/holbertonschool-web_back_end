@@ -40,13 +40,13 @@ app.get('/', (req, res) => {
   res.send('Hello Holberton School!');
 });
 
-app.get('/students', (req, res, next) => {
+app.get('/students', (req, res) => {
   countStudents(path[0], res)
     .then((data) => {
       res.send(`This is the list of our students\n${data}`);
     })
-    .catch((error) => {
-      next(error.message);
+    .catch((err) => {
+      res.send(`This is the list of our students\n${err.message}`);
     });
 });
 
