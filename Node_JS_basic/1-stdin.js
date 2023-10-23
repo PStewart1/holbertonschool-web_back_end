@@ -1,10 +1,15 @@
-// Execute: node 1-main.js
-// Output:
-// Welcome to Holberton School, what is your name?
-// Your name is: Holberton School
-// $
+// Using Process stdin
 
-console.log(str);
-
+const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
   
-  module.exports = displayMessage;
+  readline.question(`Welcome to Holberton School, what is your name?`, name => {
+    console.log(`Your name is: ${name}!`);
+    // readline.close();
+  });
+
+  process.on('exit', () => {
+    console.log('This important software is now closing');
+  });
