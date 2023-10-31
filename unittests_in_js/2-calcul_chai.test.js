@@ -1,6 +1,6 @@
-// tests for 1-calcul.js
+// tests for 2-calcul_chai.js
 const expect = require('chai').expect;
-const calculateNumber = require('./1-calcul');
+const calculateNumber = require('./2-calcul_chai');
 
 describe('calculateNumber', () => {
   describe('type SUM', () => {
