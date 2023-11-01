@@ -3,4 +3,4 @@ node_modules/
 .pytest_cache/
 redis-7.2.2/
 *.tar.gz
-package-lock.json
+*package-lock.json
