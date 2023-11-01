@@ -1,11 +1,8 @@
-//
-// import exports from "webpack";
-// const { readDatabase } = require('./utils');
+/* eslint-disable consistent-return */
 import readDatabase from '../utils';
 
 class StudentsController {
   static getAllStudents(request, response) {
-    // response.status(200);
     readDatabase(process.argv[2])
       .then((data) => {
         let responseText = 'This is the list of our students\n';
