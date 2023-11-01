@@ -1,12 +1,12 @@
 //
 // import exports from "webpack";
 // const { readDatabase } = require('./utils');
-import { readDatabase } from '../utils';
+import readDatabase from '../utils';
 
 class StudentsController {
   static getAllStudents(request, response) {
-    response.status(200);
-    readDatabase(request)
+    // response.status(200);
+    readDatabase(process.argv[2])
       .then((data) => {
         let responseText = 'This is the list of our students\n';
         const fields = Object.keys(data).sort();
@@ -27,7 +27,7 @@ class StudentsController {
     if (!['CS', 'SWE'].includes(major)) {
       return response.status(500).send('Major parameter must be CS or SWE');
     }
-    readDatabase('./students.json')
+    readDatabase(process.argv[2])
       .then((data) => {
         if (!data[major]) {
           return response.status(200).send('No students found for the specified major');
@@ -42,4 +42,5 @@ class StudentsController {
       });
   }
 }
+
 export default StudentsController;
