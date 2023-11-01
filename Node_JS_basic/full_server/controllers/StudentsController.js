@@ -33,7 +33,7 @@ class StudentsController {
           return response.status(200).send('No students found for the specified major');
         }
         const students = data[major];
-        const responseText = `List: ${students.join(', ')}\n`;
+        const responseText = `List: ${students.join(', ')}`;
         response.status(200).send(responseText);
       })
       .catch((error) => {
