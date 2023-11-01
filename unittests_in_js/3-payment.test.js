@@ -1,14 +1,15 @@
 // add a new suite named sendPaymentRequestToApi
 
-const { spy } = require('sinon');
+const sinon = require('sinon');
 const { expect } = require('chai');
 const sendPaymentRequestToApi = require('./3-payment');
+const Utils = require('./utils');
 
 describe('sendPaymentRequestToApi', () => {
-  it('should output the correct message', () => {
-    const consoleSpy = spy(console, 'log');
+  it('should match calculateNumber', () => {
+    const consoleSpy = sinon.spy(Utils, 'calculateNumber');
     sendPaymentRequestToApi(100, 20);
-    expect(consoleSpy.calledOnceWithExactly('The total is: 120')).to.be.true;
+    expect(consoleSpy.calledWith('SUM', 100, 20)).to.be.true;
     consoleSpy.restore();
   });
 });
