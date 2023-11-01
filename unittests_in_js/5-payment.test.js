@@ -1,4 +1,4 @@
-// Hooks are useful functions that can be called before execute one or all tests in a suite
+// Hooks are useful functions that can be called before execution of one or all tests in a suite
 
 const sinon = require('sinon');
 const { expect } = require('chai');
