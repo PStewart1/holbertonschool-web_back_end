@@ -1,6 +1,6 @@
 /* eslint-disable jest/require-hook */
-import * as redis from 'redis';
 // import util from 'util';
+import * as redis from 'redis';
 
 const client = redis.createClient();
 
